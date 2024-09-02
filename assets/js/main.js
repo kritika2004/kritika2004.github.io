@@ -7,6 +7,30 @@
 */
 (function() {
   "use strict";
+  /**
+   * Portfolio filtering
+   */
+  const filterButtons = document.querySelectorAll('.filter-button');
+  const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+  filterButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const filter = this.getAttribute('data-filter');
+
+      portfolioItems.forEach(item => {
+        if (filter === 'all' || item.classList.contains(filter)) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      // Update active class on filter buttons
+      filterButtons.forEach(btn => btn.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
 
   /**
    * Easy selector helper function
